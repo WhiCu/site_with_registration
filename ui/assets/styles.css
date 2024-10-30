@@ -1,0 +1,141 @@
+
+body {  
+    margin: 0;  
+    font-family: Arial, sans-serif;  
+    background-color: #1a1a1a;  
+    color: #c3c9d7;  
+}  
+
+.container {  
+    display: flex;  
+    height: 100vh;  
+}  
+.form-container {  
+    background-color: #333740;  
+    padding: 40px;  
+    width: 35vw;  
+    display: flex;  
+    flex-direction: column;  
+    justify-content: center;   
+    transition-property: width;
+    transition-duration: 1s;
+    position: relative;
+}  
+.form-container:hover {  
+    width: 40vw;  
+    
+}  
+.form-container:hover .square{  
+    animation-name: somersault;
+    animation-duration: 2s;
+    /* animation-iteration-count: infinite;  */
+    
+}  
+.form-container h1 {  
+    font-size: 400%;  
+}   
+.registration {
+    font-size: 200%;  
+}
+.form-container p {  
+    margin: 2vh 0vw;  
+}  
+
+.form-container label {
+    font-size: 125%; 
+    margin-bottom: 1vw;  
+}  
+
+.form-container input {  
+    padding: 10px 0px 10px;  
+    margin-top: 1vh;  
+    margin-bottom: 1.5vh;  
+    border: none;
+    border-radius: 5px;  
+    background-color: #525252;  
+    color: #fff;  
+    width: 30vw;
+    height: 5vh;
+    font-size: 100%; 
+}   
+
+.form-container button {  
+    padding: 10px 0px 10px;   
+    background-color: #7d050e;  
+    border: none;  
+    border-radius: 5px;  
+    color: #fff;  
+    cursor: pointer;  
+    transition: background-color 0.3s;  
+    width: 30vw;
+    height: 6vh;
+    font-size: 2vw; 
+    
+}  
+
+button:hover {  
+    background-color: #34070c;  
+}  
+
+.footer-text a {  
+    color: #c3c9d7;  
+    text-decoration: none; 
+}  
+
+.footer-text a:hover {  
+    color: #add8e6; 
+}  
+.square{
+    position: absolute;
+    top: 1vw;
+    height: 3vw;
+    width: 3vw;
+    background-color: #7d050e;
+    /* animation-name: somersault;
+    animation-duration: 2s; */
+}
+@keyframes somersault {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+.image-container {  
+    background-image: url('/assets/img/red-tree.jpg');
+    background-size: cover;  
+    background-position: center;  
+    flex: auto;  
+}
+@media (max-width: 600px) {  
+
+    .form-container input {    
+        width: 80%;
+    }   
+
+    .form-container button {  
+        width: 80%;
+        
+    }  
+    .container {  
+        display: flex;  
+        flex-direction: column-reverse;  
+    }  
+    .form-container {  
+        width: 80.5vw; 
+        display: flex;  
+        flex-direction: column;  
+        justify-content: center;   
+        /* position: relative; */
+    }  
+    .form-container:hover {  
+        width: 80.5vw; 
+        animation: none; 
+    }
+    .square{
+        top: 3vh;
+        height: 10vw;
+        width: 10vw;
+    }
+} 

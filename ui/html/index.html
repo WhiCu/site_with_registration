@@ -1,0 +1,73 @@
+<!DOCTYPE html>  
+<html lang="ru">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Вход</title>  
+    <!-- <script src="assets/script.js"></script> -->
+    <link rel="stylesheet" href="/assets/styles.css">  
+</head>  
+<body>  
+    <div class="container">  
+        <div class="form-container">  
+            <div class="square"></div><h1>InForest</h1>  
+
+            <p class="registration">Регистрация</p>  
+
+            <form method="POST" action="/db">  
+                <label for="email">Электронная почта</label><br> 
+                <input type="email" id="email" placeholder="Введите ваш email" required>  <br>
+                
+                <label for="password">Пароль</label>  <br>
+                <input type="password" id="password" placeholder="Введите ваш пароль" required>  <br>
+                
+                <button type="submit">Войти</button>  
+            </form>  
+
+            <p class="footer-text"><a href="#">Забыли пароль?</a></p>  
+            
+        </div>  
+        <div class="image-container"></div>  
+        
+    </div>  
+</body>  
+<script>
+const f = document.querySelector("form");  
+f.addEventListener("submit", (e) => {  
+    e.preventDefault(); // предотвращает стандартную отправку формы  
+
+    fetch("/db", {  
+        method: "POST",  
+        headers: {  
+            "Content-Type": "application/json",  
+        },  
+        body: JSON.stringify({  
+            email: e.target.email.value,  
+            password: e.target.password.value,  
+        })  
+    })  
+    .then(response => {  
+        if (!response.ok) {  
+            console.log("not ok")
+            window.location.href = "/db?id=1"; // перенаправление в случае ошибки  
+            return null
+        }  
+        
+        return response.json(); // парсим ответ как JSON  
+    })  
+    .then(data => {  
+        if (data.id) { // проверяем, есть ли id в ответе  
+            window.location.href = `/db?id=${data.id}`;  
+        } else {  
+            alert("Ошибка входа. Пожалуйста, проверьте введенные данные."); // обработка ошибки  
+            window.location.href = "/db?id=1"; // перенаправление в случае ошибки  
+        }  
+    })  
+    .catch(error => {  
+        console.error("Ошибка:", error);  
+        alert("Произошла ошибка. Пожалуйста, попробуйте ещё раз.");  
+    });  
+});  
+</script>
+</html>  
+
